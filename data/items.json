@@ -1,0 +1,22 @@
+[
+  {
+    "seq_id": 1,
+    "name": "Азотная кислота",
+    "category": "Реактивы",
+    "quantity": 49.0,
+    "unit": "л",
+    "storage_place": "склад",
+    "packaging": "1л в уп",
+    "expiry_date": "2025-09-26",
+    "date_received": "2025-08-28",
+    "batch_number": "5",
+    "responsible": "Епифановский",
+    "qualification": "х.ч.",
+    "reagent_type": "кислота",
+    "state_register_no": null,
+    "certified_value": null,
+    "manufacture_date": null,
+    "manufacturer": null,
+    "storage_conditions": null
+  }
+]

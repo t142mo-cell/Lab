@@ -1,0 +1,125 @@
+{
+  "plan_year": 2026,
+  "locked": true,
+  "departments": {
+    "Отдел по анализу воды": [
+      {
+        "need_id": 4,
+        "category": "Реактивы",
+        "item_name": "Азотная кислота",
+        "plan_qty": 5.0,
+        "remaining_qty": 5.0,
+        "unit": "л",
+        "qualification": "ч.д.а.",
+        "state_register_no": null,
+        "cylinder_volume": null,
+        "certified_value": null,
+        "purpose": null,
+        "status": "planned",
+        "approved_by_qa": false,
+        "created": "2025-08-28"
+      }
+    ],
+    "Отдел по анализу воздуха": [
+      {
+        "need_id": 1,
+        "category": "Реактивы",
+        "item_name": "Азотная кислота",
+        "plan_qty": 25.0,
+        "remaining_qty": 20.0,
+        "unit": "л",
+        "qualification": "х.ч.",
+        "state_register_no": null,
+        "cylinder_volume": null,
+        "certified_value": null,
+        "purpose": null,
+        "status": "planned",
+        "approved_by_qa": false,
+        "created": "2025-08-28"
+      },
+      {
+        "need_id": 2,
+        "category": "ГСО-ПГС-СО",
+        "item_name": "СО состава нитрит-ионов",
+        "plan_qty": 0.0,
+        "remaining_qty": 0.0,
+        "unit": "шт",
+        "qualification": null,
+        "state_register_no": "ГСО 7777-2000",
+        "cylinder_volume": null,
+        "certified_value": "1,0 дм3",
+        "purpose": "ттест",
+        "status": "planned",
+        "approved_by_qa": false,
+        "created": "2025-08-28"
+      },
+      {
+        "need_id": 3,
+        "category": "Реактивы",
+        "item_name": "Гидроксид натрия",
+        "plan_qty": 5.0,
+        "remaining_qty": 5.0,
+        "unit": "кг",
+        "qualification": "ч.",
+        "state_register_no": null,
+        "cylinder_volume": null,
+        "certified_value": null,
+        "purpose": "тест",
+        "status": "planned",
+        "approved_by_qa": false,
+        "created": "2025-08-28"
+      }
+    ],
+    "Отдел по анализу почв, продукции и отходов": [],
+    "Отдел биологического анализа": [],
+    "Отдел хроматографического анализа": [],
+    "Отдел управления качеством": []
+  },
+  "qa_overflow_requests": [],
+  "issues": [
+    {
+      "issue_id": 1,
+      "department": "Отдел по анализу воздуха",
+      "need_id": 1,
+      "item_seq_id": 1,
+      "item_name": "Азотная кислота",
+      "category": "Реактивы",
+      "qty": 5.0,
+      "unit": "л",
+      "date": "2025-08-28",
+      "issued_by": "Епифановский"
+    }
+  ],
+  "store_requests": [
+    {
+      "request_id": 1,
+      "department": "Отдел по анализу воздуха",
+      "need_id": 2,
+      "requested_qty": 1.0,
+      "unit": "шт",
+      "status": "rejected",
+      "created": "2025-08-28",
+      "requested_by": "Ряполов"
+    },
+    {
+      "request_id": 2,
+      "department": "Отдел по анализу воздуха",
+      "need_id": 3,
+      "requested_qty": 1.0,
+      "unit": "кг",
+      "status": "rejected",
+      "created": "2025-08-28",
+      "requested_by": "Ряполов"
+    },
+    {
+      "request_id": 3,
+      "department": "Отдел по анализу воздуха",
+      "need_id": 1,
+      "requested_qty": 5.0,
+      "unit": "л",
+      "status": "done",
+      "created": "2025-08-28",
+      "requested_by": "Ряполов"
+    }
+  ]
+}
