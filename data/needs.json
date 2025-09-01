@@ -120,6 +120,16 @@
       "status": "done",
       "created": "2025-08-28",
       "requested_by": "Ряполов"
+    },
+    {
+      "request_id": 4,
+      "department": "Отдел по анализу воздуха",
+      "need_id": 1,
+      "requested_qty": 1.0,
+      "unit": "л",
+      "status": "pending",
+      "created": "2025-09-01",
+      "requested_by": "Ряполов"
     }
   ]
 }
