@@ -47,11 +47,6 @@ class MainApp:
         self.items: List[Item] = load_items()
         self.needs: Dict[str, Any] = load_needs()
         self.style = ttk.Style()
-        self.style.configure(
-            "Danger.TButton",
-            foreground="red",
-            font=("TkDefaultFont", 10, "bold"),
-        )
         self.btn_qa_requests = None
         self.btn_store_requests = None
         self._build_login()
