@@ -46,6 +46,10 @@ class MainApp:
         self.current_user: Dict[str, Any] = {}
         self.items: List[Item] = load_items()
         self.needs: Dict[str, Any] = load_needs()
+        self.style = ttk.Style()
+        self.style.configure("Danger.TButton", foreground="white", background="red")
+        self.btn_qa_requests = None
+        self.btn_store_requests = None
         self._build_login()
 
     # Utility: search resets (also wired via lambdas in buttons for robustness)
@@ -99,9 +103,15 @@ class MainApp:
         ent_n.bind("<KeyRelease>", lambda e: self.apply_search())
         ttk.Button(needs_bar, text="Сбросить", command=lambda: (self.var_needs_search.set(""), self.apply_search())).pack(side="left", padx=(6,12))
         if dept==QA_DEPARTMENT or role=="admin":
-            ttk.Button(needs_bar, text="Входящие запросы (ОУК)", command=self.show_qa_requests).pack(side="right", padx=6)
+            self.btn_qa_requests = ttk.Button(needs_bar, text="Входящие запросы (ОУК)", command=self.show_qa_requests)
+            self.btn_qa_requests.pack(side="right", padx=6)
+        else:
+            self.btn_qa_requests = None
         if dept==STORAGE_DEPARTMENT or role=="admin":
-            ttk.Button(needs_bar, text="Входящие запросы (склад)", command=self.show_store_requests).pack(side="right", padx=6)
+            self.btn_store_requests = ttk.Button(needs_bar, text="Входящие запросы (склад)", command=self.show_store_requests)
+            self.btn_store_requests.pack(side="right", padx=6)
+        else:
+            self.btn_store_requests = None
         if role=="admin":
             ttk.Button(needs_bar, text="Пользователи", command=self.manage_users).pack(side="right", padx=6)
             ttk.Button(needs_bar, text="Утвердить план", command=self.approve_plan).pack(side="right", padx=6)
@@ -232,6 +242,17 @@ class MainApp:
                     n.get("purpose") or ""
                 ))
         self.apply_search()
+        self._update_request_buttons()
+
+    def _update_request_buttons(self):
+        pending_qa = any(r.get("status") == "pending" for r in self.needs.get("qa_overflow_requests", []))
+        pending_store = any(r.get("status") == "pending" for r in self.needs.get("store_requests", []))
+        if self.btn_qa_requests:
+            style = "Danger.TButton" if pending_qa else "TButton"
+            self.btn_qa_requests.configure(style=style)
+        if self.btn_store_requests:
+            style = "Danger.TButton" if pending_store else "TButton"
+            self.btn_store_requests.configure(style=style)
 
     def _insert_item(self, it: Item):
         tree = self.inv_trees.get(it.category)
@@ -372,10 +393,14 @@ class MainApp:
         UsersWindow(self.root)
 
     def show_qa_requests(self):
-        QARequestsWindow(self.root, self.needs)
+        win = QARequestsWindow(self.root, self.needs)
+        self.root.wait_window(win)
+        self.reload_all_trees()
 
     def show_store_requests(self):
-        StoreRequestsWindow(self.root, self)
+        win = StoreRequestsWindow(self.root, self)
+        self.root.wait_window(win)
+        self.reload_all_trees()
 
     def approve_plan(self):
         if self.current_user.get("role") != "admin": return
