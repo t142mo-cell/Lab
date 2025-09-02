@@ -47,7 +47,17 @@ class MainApp:
         self.items: List[Item] = load_items()
         self.needs: Dict[str, Any] = load_needs()
         self.style = ttk.Style()
-        self.style.configure("Danger.TButton", foreground="white", background="red")
+        self.style.configure(
+            "Danger.TButton",
+            foreground="white",
+            background="#d43f3a",
+            borderwidth=0,
+            padding=(6, 2),
+        )
+        self.style.map(
+            "Danger.TButton",
+            background=[("active", "#c9302c"), ("!disabled", "#d9534f")],
+        )
         self.btn_qa_requests = None
         self.btn_store_requests = None
         self._build_login()
@@ -248,11 +258,9 @@ class MainApp:
         pending_qa = any(r.get("status") == "pending" for r in self.needs.get("qa_overflow_requests", []))
         pending_store = any(r.get("status") == "pending" for r in self.needs.get("store_requests", []))
         if self.btn_qa_requests:
-            style = "Danger.TButton" if pending_qa else "TButton"
-            self.btn_qa_requests.configure(style=style)
+            self.btn_qa_requests.configure(style="Danger.TButton" if pending_qa else "TButton")
         if self.btn_store_requests:
-            style = "Danger.TButton" if pending_store else "TButton"
-            self.btn_store_requests.configure(style=style)
+            self.btn_store_requests.configure(style="Danger.TButton" if pending_store else "TButton")
 
     def _insert_item(self, it: Item):
         tree = self.inv_trees.get(it.category)
